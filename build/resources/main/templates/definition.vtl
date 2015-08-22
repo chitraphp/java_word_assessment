@@ -1,11 +1,6 @@
-<h1>word.getWord()</h1>
+<h1>$word.getWord()</h1>
 
-#if ($definitions)
-#foreach($definition in $definitions)
-  <ul>
-    <li><h3>$definition.getDefinition()</h3></li>
-  </ul>
-#else
+#if (!$definitions)
 <h1>Add New Definition for this word</h1>
 <form action="/definition" method="post">
   <label for="definition">Definition</label>
@@ -14,5 +9,12 @@
   <button type="submit" class="btn btn-success">Add</button>
 </form>
 #end
+#else
+  #foreach($definition in $definitions)
+  <ul>
+    <li>$definition.getDefinition()</li>
+  </ul>
+  #end
+
 <a href="/words/$word.getId()/definition/new">Add new definition</a>
-<a href="/word/new">Add a New wordy</a>
+<a href="/word/new">Add a New word</a>
